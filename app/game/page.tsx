@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, JSXElementConstructor, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -52,6 +52,10 @@ export default function game() {
     setGuess('');
   }
 
+  const isLetterIn = (): boolean => {
+    return secretWord.indexOf(guess.toLowerCase()) > -1;
+  }
+
   return (
     <div>
       <Link href="/">
@@ -89,7 +93,10 @@ export default function game() {
                 setGuess(e.currentTarget.value);
               }}
             />
-            <button type='submit' className="text-xl relative left-[42%] bottom-[50%]">
+            <button
+              type="submit"
+              className="text-xl relative left-[42%] bottom-[50%]"
+            >
               <FontAwesomeIcon
                 icon={faCirclePlay}
                 style={{ color: "#53cdd8" }}
@@ -98,9 +105,15 @@ export default function game() {
           </form>
         </div>
       </div>
-      <p className="text-third-color font-bold text-3xl text-center m-8">
-        Good guess!
-      </p>
+      {isLetterIn() ? (
+        <p className="text-third-color font-bold text-3xl text-center m-8">
+          Good guess!
+        </p>
+      ) : (
+        <p className="text-third-color font-bold text-3xl text-center m-8">
+          Oops! That letter is not in my word!
+        </p>
+      )}
     </div>
   );
 }
