@@ -11,8 +11,8 @@ export default function game() {
   const [alphabet, setAlphabet] = useState(
     "abcdefghijklmnopqrstuvwxyz".split("")
   );
-    
-  const numberOfGuesses = 8;
+  const [numberOfGuesses, setNumbersOfGuesses] = useState(8);
+     
   const secretWord = "apple".split("");
 
 
@@ -47,6 +47,7 @@ export default function game() {
     event.preventDefault();
     setLettersGuessed((e) => [...e, guess.toLowerCase()]);
     setAlphabet(alphabet.filter((i) => i != guess.toLowerCase()));
+     !isLetterIn ? setNumbersOfGuesses(numberOfGuesses - 1) : numberOfGuesses;
     setGuess("");
   }
 
