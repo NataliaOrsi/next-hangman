@@ -41,6 +41,8 @@ export default function game() {
   //   }
   // };
 
+  const guesedWord = () => {}
+
 
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
@@ -82,9 +84,25 @@ export default function game() {
           Available letters: {alphabet.join(" ").toUpperCase()}
         </p>
         <div className="flex justify-center self-center mt-40">
-          <div className="box-border h-20 w-20 p-4 border-2 border-white bg-white">
-            <p className="text-4xl text-primary-color text-center">A</p>
-          </div>
+          {secretWord.map((letter): JSX.Element => {
+            return letter === guess.toLowerCase() ? (
+              <div className="flex space-x-4">
+                <div className="space-x-4">{""}</div>
+                <div className="box-border h-20 w-20 p-4 border-2 border-white bg-white">
+                  <p className="text-4xl text-primary-color text-center">
+                    {letter.toUpperCase()}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="flex space-x-4">
+                <div className="space-x-4">{""}</div>
+                <div className="box-border h-20 w-20 p-4 border-2 border-white bg-white space-x-4">
+                  <p className="text-4xl text-primary-color text-center"></p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <p className="text-primary-color text-2xl flex justify-center self-center mt-20">
           You have {numberOfGuesses} guesses left
