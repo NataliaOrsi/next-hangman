@@ -1,11 +1,14 @@
 "use client";
 
 import React, { FormEvent, JSXElementConstructor, use, useState } from "react";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 export default function game() {
+  const router = useRouter();
+
   const [guess, setGuess] = useState("");
   const [lettersGuessed, setLettersGuessed] = useState<string[]>([]);
   const [alphabet, setAlphabet] = useState(
@@ -23,6 +26,9 @@ export default function game() {
     !isLetterIn && isLetterAvailable
       ? setNumbersOfGuesses(numberOfGuesses - 1)
       : numberOfGuesses;
+    if (numberOfGuesses <= 1) {
+      router.push('/loser');
+    }
     setGuess("");
   }
 
