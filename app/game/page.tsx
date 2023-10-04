@@ -12,50 +12,22 @@ export default function game() {
     "abcdefghijklmnopqrstuvwxyz".split("")
   );
   const [numberOfGuesses, setNumbersOfGuesses] = useState(8);
-     
+
   const secretWord = "apple".split("");
 
-
-  // const isWordGuessed = (secretWord: string[], lettersGuessed: string[]) => {
-  //   const word = [];
-
-  //   for (const letter in secretWord) {
-  //     if (letter in lettersGuessed) {
-  //       word.push(letter);
-  //     }
-
-  //     return word == secretWord;
-  //   }
-  // };
-
-  // const getGuessedWord = (secretWord: string[], lettersGuessed: string[]) => {
-  //   const symbol = "_ ";
-  //   const word_to_fill = [];
-  //   for (const letter in secretWord) {
-  //     if (letter in lettersGuessed) {
-  //       word_to_fill.push(letter);
-  //     } else {
-  //       word_to_fill.push(letter);
-  //     }
-  //     return word_to_fill;
-  //   }
-  // };
-
-  const guesedWord = () => {}
-
-
-
+  
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     setLettersGuessed((e) => [...e, guess.toLowerCase()]);
     setAlphabet(alphabet.filter((i) => i != guess.toLowerCase()));
-     !isLetterIn ? setNumbersOfGuesses(numberOfGuesses - 1) : numberOfGuesses;
+    !isLetterIn && isLetterAvailable
+      ? setNumbersOfGuesses(numberOfGuesses - 1)
+      : numberOfGuesses;
     setGuess("");
   }
 
-
-  const isLetterIn = secretWord.indexOf(guess.toLowerCase()) > -1
-  const isLetterAvailable = !(lettersGuessed.indexOf(guess.toLowerCase()) > -1);
+  const isLetterIn = secretWord.includes(guess.toLowerCase());
+  const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
 
   const Greeting =
     guess === ""
@@ -66,7 +38,6 @@ export default function game() {
         : "Oops! That letter is not in my word!"
       : "Oops! You've already guessed that letter";
 
-  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -85,7 +56,7 @@ export default function game() {
         </p>
         <div className="flex justify-center self-center mt-40">
           {secretWord.map((letter): JSX.Element => {
-            return letter === guess.toLowerCase() ? (
+            return lettersGuessed.includes(letter) ? (
               <div className="flex space-x-4">
                 <div className="space-x-4">{""}</div>
                 <div className="box-border h-20 w-20 p-4 border-2 border-white bg-white">
