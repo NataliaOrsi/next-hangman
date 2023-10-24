@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useWordContext } from "../context/word-context";
 
 export default function game() {
   const router = useRouter();
@@ -16,7 +17,9 @@ export default function game() {
   );
   const [numberOfGuesses, setNumbersOfGuesses] = useState(8);
 
-  const secretWord = "apple".split("");
+  const { secretWord } = useWordContext();
+
+  const secretWordSplit = secretWord.split("");
 
   
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
@@ -32,7 +35,7 @@ export default function game() {
     setGuess("");
   }
 
-  const isLetterIn = secretWord.includes(guess.toLowerCase());
+  const isLetterIn = secretWordSplit.includes(guess.toLowerCase());
   const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
 
   const Greeting =
@@ -61,7 +64,7 @@ export default function game() {
           Available letters: {alphabet.join(" ").toUpperCase()}
         </p>
         <div className="flex justify-center self-center mt-40">
-          {secretWord.map((letter): JSX.Element => {
+          {secretWordSplit.map((letter): JSX.Element => {
             return lettersGuessed.includes(letter) ? (
               <div className="flex space-x-4">
                 <div className="space-x-4">{""}</div>

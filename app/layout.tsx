@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import WorldContextProvider  from "./context/word-context";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -22,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="box-border rounded-xl max-w-7xl h-[32rem] border-yellow-50/80 border-2 m-auto mt-48 bg-yellow-50/80">
-          {children}
+          <WorldContextProvider>{children}</WorldContextProvider>
         </div>
       </body>
     </html>

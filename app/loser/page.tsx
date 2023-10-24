@@ -1,9 +1,13 @@
-import React from 'react'
+"use client";
 
-const secretWord = 'loser'
+import React, { useEffect } from "react";
+import { useWordContext } from "../context/word-context";
+import { generate } from "random-words";
+
 
 export default function loser() {
-  return (
-    <div>Sorry, you ran out of guesses. The word was {secretWord}.</div>
-  );
+
+  const { secretWord } = useWordContext();
+
+  return <div>Sorry, you ran out of guesses. The word was {secretWord}.</div>;
 }
