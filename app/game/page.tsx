@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useWordContext } from "../context/word-context";
+import Congratulations from "../congratulations/page";
+import Loser from "../loser/page";
 
 export default function game() {
   const router = useRouter();
@@ -16,11 +18,22 @@ export default function game() {
     "abcdefghijklmnopqrstuvwxyz".split("")
   );
   const [numberOfGuesses, setNumbersOfGuesses] = useState(8);
+  const [ greeting, setGreeting ] = useState('');
 
   const { secretWord } = useWordContext();
 
   const secretWordSplit = secretWord.split("");
 
+  function isWordGuessed(secretWordSplit: string[], lettersGuessed: string[]){
+    let word = "";
+
+    for (const letter in secretWordSplit) {
+      if (lettersGuessed.includes(secretWordSplit[letter])) {
+        word += secretWordSplit[letter];
+      }
+    }
+    return word === secretWord;
+  }
   
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -29,27 +42,22 @@ export default function game() {
     !isLetterIn && isLetterAvailable
       ? setNumbersOfGuesses(numberOfGuesses - 1)
       : numberOfGuesses;
-    if (numberOfGuesses <= 1) {
-      router.push('/loser');
-    }
+    setGreeting(guess === ""
+      ? ""
+      : isLetterAvailable
+      ? isLetterIn
+        ? "Good guess!"
+        : "Oops! That letter is not in my word!"
+      : "Oops! You've already guessed that letter")
     setGuess("");
   }
 
   const isLetterIn = secretWordSplit.includes(guess.toLowerCase());
   const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
 
-  const Greeting =
-    guess === ""
-      ? ""
-      : isLetterAvailable
-      ? isLetterIn
-        ? "Good guess!"
-        : "Oops! That letter is not in my word!"
-      : "Oops! You've already guessed that letter";
-
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {isWordGuessed(secretWordSplit, lettersGuessed) ? <Congratulations /> : numberOfGuesses > 0 ? (<form onSubmit={handleSubmit}>
         <Link href="/">
           <FontAwesomeIcon
             icon={faCircleXmark}
@@ -112,9 +120,9 @@ export default function game() {
           </div>
         </div>
         <p className="text-third-color font-bold text-3xl text-center m-8">
-          {Greeting}
+          {greeting}
         </p>
-      </form>
+      </form>) : <Loser />}
     </div>
   );
 }
