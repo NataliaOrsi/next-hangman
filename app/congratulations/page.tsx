@@ -1,9 +1,18 @@
-import React from 'react'
+"use client";
+
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { useWordContext } from "../context/word-context";
 
-export default function congratulations() {
+export interface CongratulationsProps {
+  secretWord: string;
+  restart: Dispatch<SetStateAction<void>>;
+}
+
+export default function congratulations({ secretWord, restart }: CongratulationsProps) {
+  // const { secretWord } = useWordContext();
   return (
     <div>
       <Link href="/">
@@ -36,15 +45,24 @@ export default function congratulations() {
             <span className="text-primary-color">!</span>
           </div>
         </div>
-        <div className="border-third-color border-2 bg-third-color text-white rounded-md flex absolute left-[46%] bottom-[35%] text-3xl">
-          You won!
-        </div>
-        <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex absolute left-[47%] bottom-[20%]">
-          <Link href="/game">
-            <button className="p-4">Play Again</button>
-          </Link>
+        <div className="flex justify-center items-center">
+          <div className="border-third-color border-2 bg-third-color text-white rounded-md flex absolute bottom-[43%] text-3xl">
+            You won! The word was {secretWord}.
+          </div>
+          <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex absolute bottom-[30%]">
+            <Link href="/game">
+              <button
+                className="p-4"
+                onClick={() => {
+                  restart();
+                }}
+              >
+                Play Again
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};

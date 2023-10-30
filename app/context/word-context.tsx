@@ -9,6 +9,7 @@ type WordContextProviderProps = {
 
 type WordContextProps = {
   secretWord: string;
+  setSecretWord: React.Dispatch<React.SetStateAction<string>>
 };
 
 export const WordContext = createContext<WordContextProps | null>(null);
@@ -23,7 +24,7 @@ export default function WorldContextProvider({children,}: WordContextProviderPro
   }, []);
 
   return (
-    <WordContext.Provider value={{secretWord}}>
+    <WordContext.Provider value={{secretWord, setSecretWord}}>
       {children}
     </WordContext.Provider>
   );

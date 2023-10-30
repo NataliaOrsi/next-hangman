@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useWordContext } from "../context/word-context";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
+export interface LoserProps {
+  secretWord: string;
+  restart: Dispatch<SetStateAction<void>>;
+}
 
-export default function loser() {
-
-  const { secretWord } = useWordContext();
-
+export default function loser({ secretWord, restart }: LoserProps) {
+  
   return (
     <div>
       <Link href="/">
@@ -34,13 +36,17 @@ export default function loser() {
             <span className="text-primary-color">E</span>
             <span className="text-secondary-color">R</span>
           </div>
-          <div className="border-third-color border-2 bg-third-color text-white rounded-md flex absolute left-[35%] bottom-[35%] text-2xl">
-            The word was {secretWord}.
-          </div>
-          <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex absolute left-[47%] bottom-[20%]">
-            <Link href="/game">
-              <button className="p-4">Play Again</button>
-            </Link>
+          <div className="flex justify-center items-center">
+            <div className="border-third-color border-2 bg-third-color text-white rounded-md flex absolute bottom-[43%] text-2xl">
+              The word was {secretWord}.
+            </div>
+            <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex absolute bottom-[30%]">
+              <Link href="/game">
+                <button className="p-4" onClick={() => restart()}>
+                  Play Again
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
