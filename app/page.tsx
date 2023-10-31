@@ -16,7 +16,7 @@ export default function Home() {
         <div className="flex justify-center items-center">
           <div className="border-third-color border-2 bg-third-color text-white rounded-md flex absolute bottom-[35%]">
             <Link href="/game">
-              <button className="p-4">Let's play</button>
+              <button className="p-4">{"Let's play"}</button>
             </Link>
           </div>
         </div>

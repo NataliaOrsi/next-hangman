@@ -19,7 +19,7 @@ export default function WorldContextProvider({children,}: WordContextProviderPro
 
   const word = generate().toString();
 
-  word && useEffect(() => {
+  useEffect(() => {
     setSecretWord(word);
   }, [word]);
 
