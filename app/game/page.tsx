@@ -67,8 +67,6 @@ export const Game = (): JSX.Element => {
     setNumbersOfGuesses(8);
   }
 
-  console.log(secretWord);
-
   return (
     <div>
       {isWordGuessed(secretWordSplit, lettersGuessed) && secretWord !== '' ? (
