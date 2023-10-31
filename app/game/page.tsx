@@ -2,8 +2,8 @@
 
 import React, { FormEvent, useEffect, useState } from "react";
 import { useWordContext } from "../context/word-context";
-import Congratulations  from "../congratulations/page";
-import Loser from "../loser/page";
+import { Congratulations }  from "../congratulations/page";
+import { Loser } from "../loser/page";
 import { Form } from "../form/page";
 import { generate } from "random-words";
 

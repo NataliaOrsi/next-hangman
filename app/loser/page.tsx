@@ -11,7 +11,7 @@ export interface LoserProps {
   restart: Dispatch<SetStateAction<void>>;
 }
 
-export default function loser({ secretWord, restart }: LoserProps) {
+export const Loser = ({ secretWord, restart }: LoserProps) : JSX.Element => {
   
   return (
     <div>
@@ -53,3 +53,5 @@ export default function loser({ secretWord, restart }: LoserProps) {
     </div>
   );
 }
+
+export default Loser;

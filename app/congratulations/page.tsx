@@ -11,8 +11,8 @@ export interface CongratulationsProps {
   restart: Dispatch<SetStateAction<void>>;
 }
 
-export default function congratulations({ secretWord, restart }: CongratulationsProps) {
-  // const { secretWord } = useWordContext();
+export const Congratulations = ({ secretWord, restart }: CongratulationsProps): JSX.Element => {
+  
   return (
     <div>
       <Link href="/">
@@ -66,3 +66,5 @@ export default function congratulations({ secretWord, restart }: Congratulations
     </div>
   );
 };
+
+export default Congratulations;
