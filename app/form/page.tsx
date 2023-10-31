@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { useWordContext } from "../context/word-context";
 
 export interface FormProps {
   lettersGuessed: string[];
@@ -13,6 +12,7 @@ export interface FormProps {
   alphabet: string[];
   numberOfGuesses: number;
   secretWordSplit: string[];
+  setGreeting: (e: any) => void;
 }
 
 export const Form = ({
@@ -24,8 +24,8 @@ export const Form = ({
   alphabet,
   numberOfGuesses,
   secretWordSplit,
+  setGreeting,
 }: FormProps): JSX.Element => {
-
   return (
     <form onSubmit={handleSubmit}>
       <Link href="/">
@@ -75,7 +75,13 @@ export const Form = ({
             type="text"
             value={guess}
             onChange={(e) => {
-              setGuess(e.currentTarget.value);
+              if (e.target.value.length === 1) {
+                const result = e.target.value.replace(/[^a-z]/gi, "");
+                setGuess(result);
+              } else {
+                setGuess("");
+                setGreeting("Invalid input. Try again.");
+              }
             }}
           />
           <button

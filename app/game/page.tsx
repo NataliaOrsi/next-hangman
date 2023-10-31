@@ -30,6 +30,7 @@ export const Game = (): JSX.Element => {
 
   function handleSubmit (event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
+
     setLettersGuessed((e) => [...e, guess.toLowerCase()]);
     setAlphabet(alphabet.filter((i) => i != guess.toLowerCase()));
     !isLetterIn && isLetterAvailable
@@ -45,6 +46,7 @@ export const Game = (): JSX.Element => {
         : "Oops! You've already guessed that letter"
     );
     setGuess("");
+    
   }
 
   function isWordGuessed(secretWordSplit: string[], lettersGuessed: string[]) {
@@ -78,6 +80,7 @@ export const Game = (): JSX.Element => {
           guess={guess}
           setGuess={setGuess}
           greeting={greeting}
+          setGreeting={setGreeting}
           alphabet={alphabet}
           numberOfGuesses={numberOfGuesses}
           secretWordSplit={secretWordSplit}
