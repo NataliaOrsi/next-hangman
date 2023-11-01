@@ -24,7 +24,7 @@ export const Congratulations = ({ secretWord, restart }: CongratulationsProps) =
         />
       </Link>
       <div className="my-44">
-        <div className="justify-center items-center">
+        <div className="flex flex-col justify-center items-center gap-y-6">
           <div className="animated-text text-8xl text-center">
             <span className="text-primary-color">C</span>
             <span className="text-secondary-color">O</span>
@@ -44,11 +44,11 @@ export const Congratulations = ({ secretWord, restart }: CongratulationsProps) =
             <span className="text-primary-color">!</span>
           </div>
         </div>
-        <div className="flex justify-center items-center">
-          <div className="border-third-color border-2 bg-third-color text-white rounded-md flex absolute bottom-[43%] text-3xl">
+        <div className="flex flex-col items-center gap-y-12">
+          <div className="border-third-color border-2 bg-third-color text-white rounded-md flex text-3xl">
             You won! The word was {secretWord}.
           </div>
-          <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex absolute bottom-[30%]">
+          <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex">
             <Link href="/game">
               <button
                 className="p-4"

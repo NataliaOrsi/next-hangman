@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -38,16 +38,17 @@ export const Form = ({
         />
       </Link>
 
-      <p className="text-2xl text-third-color text-center">
-        Available letters: {alphabet.join(" ").toUpperCase()}
-      </p>
-      <div className="flex justify-center self-center mt-40">
+      <div className="text-lg text-third-color text-center md:text-2xl">
+        <div>Available letters: </div>
+        <div>{alphabet.join(" ").toUpperCase()}</div>
+      </div>
+      <div className="flex justify-center self-center mt-20 md:mt-35">
         {secretWordSplit.map((letter): JSX.Element => {
           return lettersGuessed.includes(letter) ? (
             <div className="flex space-x-4">
               <div className="space-x-4">{""}</div>
-              <div className="box-border h-20 w-20 p-4 border-2 border-white bg-white">
-                <p className="text-4xl text-primary-color text-center">
+              <div className="box-border h-8 w-8 border-2 border-white bg-white md:h-20 md:w-20 md:p-4">
+                <p className="text-xl text-primary-color text-center md:text-4xl">
                   {letter.toUpperCase()}
                 </p>
               </div>
@@ -55,14 +56,14 @@ export const Form = ({
           ) : (
             <div className="flex space-x-4">
               <div className="space-x-4">{""}</div>
-              <div className="box-border h-20 w-20 p-4 border-2 border-white bg-white space-x-4">
-                <p className="text-4xl text-primary-color text-center"></p>
+              <div className="box-border h-8 w-8 border-2 border-white bg-white space-x-4 md:h-20 md:w-20 md:p-4">
+                <p className="text-xl text-primary-color text-center md:text-4xl"></p>
               </div>
             </div>
           );
         })}
       </div>
-      <p className="text-primary-color text-2xl flex justify-center self-center mt-20">
+      <p className="text-primary-color text-xl flex justify-center self-center mt-20 md:text-2xl">
         You have {numberOfGuesses} guesses left
       </p>
       <div className="flex flex-col justify-center mt-4">

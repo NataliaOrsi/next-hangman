@@ -24,7 +24,6 @@ const Game: FC = () => {
 
   const isLetterIn = secretWordSplit.includes(guess.toLowerCase());
   const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
-  console.log(secretWord);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -62,6 +61,7 @@ const Game: FC = () => {
     setSecretWord(word);
     setLettersGuessed([]);
     setNumbersOfGuesses(8);
+    setAlphabet("abcdefghijklmnopqrstuvwxyz".split(""));
   }
 
   return (
