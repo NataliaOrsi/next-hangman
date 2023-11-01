@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { useWordContext } from "../context/word-context";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";

@@ -10,7 +10,7 @@ export interface CongratulationsProps {
   restart: Dispatch<SetStateAction<void>>;
 }
 
-export const Congratulations:  FC<CongratulationsProps> = ({ secretWord, restart }: CongratulationsProps) => {
+export const Congratulations = ({ secretWord, restart }: CongratulationsProps) => {
   
   return (
     <div>

@@ -1,15 +1,14 @@
 "use client";
 
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import { useWordContext } from "../context/word-context";
-import { Congratulations }  from "../congratulations/page";
-import { Loser } from "../loser/page";
-import { Form } from "../form/page";
+import { Congratulations } from "../components/Congratulations";
+import { Loser } from "../components/Loser";
+import { Form } from "../components/Form";
 import { generate } from "random-words";
 
-export const Game = (): JSX.Element => {
+const Game: FC = () => {
   const { secretWord, setSecretWord } = useWordContext();
-  
 
   const [guess, setGuess] = useState("");
   const [lettersGuessed, setLettersGuessed] = useState<string[]>([]);
@@ -23,12 +22,11 @@ export const Game = (): JSX.Element => {
 
   const [greeting, setGreeting] = useState("");
 
-
   const isLetterIn = secretWordSplit.includes(guess.toLowerCase());
   const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
   console.log(secretWord);
 
-  function handleSubmit (event: FormEvent<HTMLFormElement>): void {
+  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     setLettersGuessed((e) => [...e, guess.toLowerCase()]);
@@ -46,7 +44,6 @@ export const Game = (): JSX.Element => {
         : "Oops! You've already guessed that letter"
     );
     setGuess("");
-    
   }
 
   function isWordGuessed(secretWordSplit: string[], lettersGuessed: string[]) {
@@ -69,7 +66,7 @@ export const Game = (): JSX.Element => {
 
   return (
     <div>
-      {isWordGuessed(secretWordSplit, lettersGuessed) && secretWord !== '' ? (
+      {isWordGuessed(secretWordSplit, lettersGuessed) && secretWord !== "" ? (
         <Congratulations secretWord={secretWord} restart={restart} />
       ) : numberOfGuesses > 0 ? (
         <Form
@@ -83,7 +80,7 @@ export const Game = (): JSX.Element => {
           numberOfGuesses={numberOfGuesses}
           secretWordSplit={secretWordSplit}
         />
-      )  : (
+      ) : (
         <Loser secretWord={secretWord} restart={restart} />
       )}
     </div>
