@@ -1,17 +1,16 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { useWordContext } from "../context/word-context";
 
 export interface CongratulationsProps {
   secretWord: string;
   restart: Dispatch<SetStateAction<void>>;
 }
 
-export const Congratulations = ({ secretWord, restart }: CongratulationsProps): JSX.Element => {
+export const Congratulations:  FC<CongratulationsProps> = ({ secretWord, restart }: CongratulationsProps) => {
   
   return (
     <div>
