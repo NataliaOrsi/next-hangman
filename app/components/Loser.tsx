@@ -25,7 +25,7 @@ export const Loser = ({ secretWord, restart }: LoserProps) : JSX.Element => {
       </Link>
       <div className="my-44">
         <div className="flex flex-col justify-center items-center gap-y-6">
-          <div className="animated-text text-8xl text-center">
+          <div className="animated-text text-5xl text-center md:text-8xl">
             <span className="text-primary-color">G</span>
             <span className="text-secondary-color">A</span>
             <span className="text-third-color">M</span>

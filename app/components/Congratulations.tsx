@@ -23,9 +23,9 @@ export const Congratulations = ({ secretWord, restart }: CongratulationsProps) =
           className="mt-2 ml-2"
         />
       </Link>
-      <div className="my-44">
+      <div className="my-36 md:my-44">
         <div className="flex flex-col justify-center items-center gap-y-6">
-          <div className="animated-text text-8xl text-center">
+          <div className="animated-text text-3xl text-center md:text-8xl">
             <span className="text-primary-color">C</span>
             <span className="text-secondary-color">O</span>
             <span className="text-third-color">N</span>
@@ -45,7 +45,7 @@ export const Congratulations = ({ secretWord, restart }: CongratulationsProps) =
           </div>
         </div>
         <div className="flex flex-col items-center gap-y-12">
-          <div className="border-third-color border-2 bg-third-color text-white rounded-md flex text-3xl">
+          <div className="border-third-color border-2 bg-third-color text-white rounded-md flex text-xl md:text-3xl">
             You won! The word was {secretWord}.
           </div>
           <div className="border-primary-color border-2 bg-primary-color text-white rounded-md flex">

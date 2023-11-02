@@ -67,12 +67,12 @@ export const Form = ({
         You have {numberOfGuesses} guesses left
       </p>
       <div className="flex flex-col justify-center mt-4">
-        <label className="text-secondary-color font-bold text-xl relative left-[44%]">
+        <label className="text-secondary-color font-bold text-xl flex justify-center">
           Guess a letter:{" "}
         </label>
-        <div>
+        <div className="flex justify-center">
           <input
-            className="p-2 rounded-md relative left-[40%] text-center"
+            className="p-2 rounded-md text-center w-12 md:w-24"
             type="text"
             value={guess}
             onChange={(e) => {
@@ -87,13 +87,13 @@ export const Form = ({
           />
           <button
             type="submit"
-            className="text-xl relative left-[42%] bottom-[50%]"
+            className="text-xl"
           >
-            <FontAwesomeIcon icon={faCirclePlay} style={{ color: "#53cdd8" }} />
+            <FontAwesomeIcon icon={faCirclePlay} style={{ color: "#53cdd8" }} className="pl-2"/>
           </button>
         </div>
       </div>
-      <p className="text-third-color font-bold text-3xl text-center m-8">
+      <p className="text-third-color font-bold text-3xl text-center m-16">
         {greeting}
       </p>
     </form>
