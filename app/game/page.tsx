@@ -1,14 +1,14 @@
 "use client";
 
-import React, { FC, FormEvent, useState } from "react";
-import { useWordContext } from "../context/word-context";
+import React, { FC, FormEvent, useEffect, useState } from "react";
 import { Congratulations } from "../components/Congratulations";
 import { Loser } from "../components/Loser";
 import { Form } from "../components/Form";
 import { generate } from "random-words";
+import Loader from "../components/Loader";
 
 const Game: FC = () => {
-  const { secretWord, setSecretWord } = useWordContext();
+  const [ secretWord, setSecretWord ] = useState("");
 
   const [guess, setGuess] = useState("");
   const [lettersGuessed, setLettersGuessed] = useState<string[]>([]);
@@ -24,6 +24,11 @@ const Game: FC = () => {
 
   const isLetterIn = secretWordSplit.includes(guess.toLowerCase());
   const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
+
+  if(secretWord === '') {
+    setSecretWord(generate().toString());
+  }
+
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -63,6 +68,8 @@ const Game: FC = () => {
     setNumbersOfGuesses(8);
     setAlphabet("abcdefghijklmnopqrstuvwxyz".split(""));
   }
+
+  if (secretWord === '') return <Loader />
 
   return (
     <div>
