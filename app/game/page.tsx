@@ -1,6 +1,7 @@
 "use client";
 
-import React, { FC, FormEvent, useEffect, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { Congratulations } from "../components/Congratulations";
 import { Loser } from "../components/Loser";
 import { Form } from "../components/Form";
@@ -8,6 +9,8 @@ import { generate } from "random-words";
 import Loader from "../components/Loader";
 
 const Game: FC = () => {
+  const matches = useMediaQuery("(min-width:480px)");
+  const isMobile = !matches;
   const [ secretWord, setSecretWord ] = useState("");
 
   const [guess, setGuess] = useState("");
@@ -26,7 +29,9 @@ const Game: FC = () => {
   const isLetterAvailable = !lettersGuessed.includes(guess.toLowerCase());
 
   if(secretWord === '') {
-    setSecretWord(generate().toString());
+    isMobile
+      ? setSecretWord(generate({ maxLength: 8 }).toString())
+      : setSecretWord(generate({ minLength: 5 }).toString());
   }
 
 

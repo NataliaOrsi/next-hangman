@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="my-44">
       <div className="flex flex-col justify-center items-center gap-y-10 md:gap-y-20">
-        <div className="animated-text text-6xl text-center md:text-8xl">
+        <div className="animated-text text-5xl text-center md:text-8xl">
           <span className="text-primary-color">H</span>
           <span className="text-secondary-color">A</span>
           <span className="text-third-color">N</span>

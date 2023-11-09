@@ -47,7 +47,7 @@ export const Form = ({
           return lettersGuessed.includes(letter) ? (
             <div className="flex space-x-4">
               <div className="space-x-4">{""}</div>
-              <div className="box-border h-8 w-8 border-2 border-white bg-white md:h-20 md:w-20 md:p-4">
+              <div className="box-border h-6 w-6 border-2 border-white bg-white md:h-20 md:w-20 md:p-4">
                 <p className="text-xl text-primary-color text-center md:text-4xl">
                   {letter.toUpperCase()}
                 </p>
@@ -56,7 +56,7 @@ export const Form = ({
           ) : (
             <div className="flex space-x-4">
               <div className="space-x-4">{""}</div>
-              <div className="box-border h-8 w-8 border-2 border-white bg-white space-x-4 md:h-20 md:w-20 md:p-4">
+              <div className="box-border h-6 w-6 border-2 border-white bg-white space-x-4 md:h-20 md:w-20 md:p-4">
                 <p className="text-xl text-primary-color text-center md:text-4xl"></p>
               </div>
             </div>
